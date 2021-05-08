@@ -11,7 +11,10 @@ public class SecurityConfig {
     http
         .authorizeExchange()
           .pathMatchers("/resource")
-            .hasAuthority("SCOPE_resource.read")
+            //.hasAuthority("SCOPE_resource.read")
+            .authenticated()
+          .pathMatchers("/open")
+            .permitAll()
           .anyExchange()
             .authenticated()
           .and()

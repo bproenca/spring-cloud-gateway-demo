@@ -25,7 +25,12 @@ public class SecuredServiceApplication {
     LOG.trace("***** JWT Claims: {}", jwt.getClaims().toString());
     LOG.trace("***** JWT Token: {}", jwt.getTokenValue());
     return String.format("Resource accessed by: %s (with subjectId: %s)" ,
-            jwt.getClaims().get("user_name"),
+            jwt.getClaims().get("clientId"),
             jwt.getSubject());
+  }
+
+  @GetMapping("/open")
+  public String open() {
+    return "Public resource";
   }
 }

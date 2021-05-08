@@ -1,12 +1,12 @@
 server:
-  port: 9000
+  port: 9091
 
 spring:
   security:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://uaa:8090/uaa/token_keys
+          jwk-set-uri: http://172.17.0.1:8080/auth/realms/bcp/protocol/openid-connect/certs
 
 logging:
   level:
