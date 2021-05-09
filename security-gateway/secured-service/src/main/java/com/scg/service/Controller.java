@@ -20,7 +20,7 @@ public class Controller {
     public String multiTenantResource(@AuthenticationPrincipal Jwt jwt, @PathVariable(required = true) String tenant) {
         String expectedClientID = "client-tenant-" + tenant;
         if (expectedClientID.equalsIgnoreCase(jwt.getClaims().get("clientId").toString())) {
-            return String.format("Or | clientId: %s allowed to access tenant: %s", jwt.getClaims().get("clientId"),
+            return String.format("Ok | clientId: %s allowed to access tenant: %s", jwt.getClaims().get("clientId"),
                     tenant);
         } else {
             return String.format("Error | clientId: %s cannot access tenant: %s", jwt.getClaims().get("clientId"),

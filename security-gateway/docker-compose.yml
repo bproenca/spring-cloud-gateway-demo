@@ -41,7 +41,7 @@ services:
 
   secured-service:
     image: scg-bcp-secured-service:latest
-    container_name: resource
+    container_name: service1
     depends_on: 
       - keycloak
     expose:
