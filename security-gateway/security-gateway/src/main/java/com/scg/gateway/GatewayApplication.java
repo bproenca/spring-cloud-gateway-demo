@@ -12,18 +12,21 @@ public class GatewayApplication {
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
-				.route("resource", r -> r
-					.path("/resource")
-					.filters(f -> f
-						.addRequestHeader("Hello1", "World1"))
-						//.removeRequestHeader("Cookie")) // Prevents cookie being sent downstream
+				.route(p -> p
+				.path("/service1/**")
+				.filters(f -> f
+					.rewritePath("/service1/(?<path>.*)", "/${path}")
+					.addRequestHeader("Hello1", "World1"))
+					//.removeRequestHeader("Cookie")) // Prevents cookie being sent downstream
 					.uri("http://resource:9091")) // Taking advantage of docker naming
-				.route("open", r -> r
-					.path("/open")
-					.filters(f -> f
-						.addRequestHeader("Hello2", "World2"))
-						//.removeRequestHeader("Cookie")) // Prevents cookie being sent downstream
-					.uri("http://resource:9091")) // Taking advantage of docker naming
+
+				// Simple re-route from: /get to: http://httpbin.org/80
+                // And adds a simple "hello:world" HTTP Header
+				.route(p -> p
+					.path("/get")
+					.filters(f -> f.addRequestHeader("Hello3", "World3"))
+					.uri("http://httpbin.org:80"))                            
+
 				.build();
 	}
 

@@ -19,9 +19,9 @@ public class DemoApplication {
 						// Simple re-route from: /get to: http://httpbin.org/80
 						// And adds a simple "hello:world" HTTP Header
 						.route(p -> p
-										.path("/get")
-										.filters(f -> f.addRequestHeader("Hello", "World"))
-										.uri("http://httpbin.org:80"))
+							.path("/get/{segment}")
+							.filters(f -> f.addRequestHeader("Hello", "World"))
+							.uri("http://httpbin.org:80"))
 						.build();
 	}
 

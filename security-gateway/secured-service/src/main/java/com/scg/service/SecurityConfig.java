@@ -12,7 +12,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-        .antMatchers(HttpMethod.GET, "/actuator/**", "/open/**")
+        .antMatchers(HttpMethod.GET, "/actuator/**", "/api/public/**")
             .permitAll()
         .anyRequest()
             .authenticated()

@@ -11,6 +11,7 @@ spring:
 management:
   endpoints:
     web:
+      base-path: /service1/actuator
       exposure.include: beans, env, health, info, metrics, mappings
   endpoint:
     health:
@@ -19,8 +20,8 @@ management:
 logging:
   level:
     root: INFO
-    com.scg.service: TRACE
-    org.springframework.web: INFO
-    org.springframework.web.HttpLogging: DEBUG
-    org.springframework.security: DEBUG
-    org.springframework.security.oauth2: DEBUG
+    '[com.scg.service]': DEBUG
+    '[org.springframework.web]': INFO
+    '[org.springframework.web.HttpLogging]': DEBUG
+    '[org.springframework.security]': DEBUG
+    '[org.springframework.security.oauth2]': DEBUG
