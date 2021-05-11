@@ -6,7 +6,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://172.17.0.1:8080/auth/realms/bcp/protocol/openid-connect/certs
+          jwk-set-uri: http://sre-keycloak.insidepublicprd.gru.oraclevcn.com:8080/auth/realms/scs/protocol/openid-connect/certs
 
 management:
   endpoints:

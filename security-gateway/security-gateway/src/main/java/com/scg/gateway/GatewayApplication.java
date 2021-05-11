@@ -18,7 +18,7 @@ public class GatewayApplication {
 					.rewritePath("/service1/(?<path>.*)", "/${path}")
 					.addRequestHeader("Hello1", "World1"))
 					//.removeRequestHeader("Cookie")) // Prevents cookie being sent downstream
-					.uri("http://service1:9091")) // Taking advantage of docker naming
+					.uri("http://secured-service:9091")) // Taking advantage of docker naming
 
 				// Simple re-route from: /get to: http://httpbin.org/80
                 // And adds a simple "hello:world" HTTP Header

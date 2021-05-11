@@ -1,55 +1,15 @@
 version: '3'
 services:
 
-  mysql:
-    image: mysql:5.7.32
-    container_name: mysql
-    expose:
-      - "3306"
-    environment:
-      - MYSQL_DATABASE=keycloak
-      - MYSQL_USER=keycloak
-      - MYSQL_PASSWORD=password
-      - MYSQL_ROOT_PASSWORD=root_password
-    volumes: 
-      - /home/bcp/wks/vdocker/mysql:/var/lib/mysql
-    healthcheck:
-      test: "mysqladmin ping -u root -p$${MYSQL_ROOT_PASSWORD}"
-      start_period: 10s
-
-  keycloak:
-    image: jboss/keycloak:12.0.4
-    container_name: keycloak
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
-      - DB_VENDOR=mysql
-      - DB_ADDR=mysql
-      - DB_USER=keycloak
-      - DB_PASSWORD=password
-      - JDBC_PARAMS=useSSL=false
-    expose:
-      - "8080"
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysql
-    healthcheck:
-      test: "curl -f http://localhost:8080/auth || exit 1"
-      start_period: 20s
-
-
   secured-service:
     image: scg-bcp-secured-service:latest
-    container_name: service1
-    depends_on: 
-      - keycloak
+    deploy:
+      replicas: 3
     expose:
       - "9091"
 
   gateway:
     image: scg-bcp-security-gateway:latest
-    container_name: gateway
     expose:
       - "8081"
     ports:
