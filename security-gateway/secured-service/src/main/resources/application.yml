@@ -11,7 +11,6 @@ spring:
 management:
   endpoints:
     web:
-      base-path: /service1/actuator
       exposure.include: beans, env, health, info, metrics, mappings
   endpoint:
     health:
